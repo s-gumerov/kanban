@@ -1,1 +1,3 @@
-export * from './AuthPage'
+export * from './Auth'
+export * from './Main'
+export * from './Kanban'

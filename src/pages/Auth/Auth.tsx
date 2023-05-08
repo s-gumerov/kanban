@@ -7,7 +7,7 @@ import {
 import { TAuthData } from './types.ts'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 
-export const AuthPage = (): JSX.Element => {
+export const Auth = (): JSX.Element => {
   const handleSubmit = (values: TAuthData) => {
     console.log(values)
   }

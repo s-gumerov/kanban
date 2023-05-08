@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { privateRoutes, publicRoutes } from './routes.ts'
 
 export const Router = () => {
-  const auth = false
+  const auth = true
   return auth ? (
     <Routes>
       {privateRoutes.map(({ path, element }) => (
