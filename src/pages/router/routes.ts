@@ -1,12 +1,12 @@
 import type { TRoute } from './types.ts'
-import { Auth, Main, Kanban } from '../index.ts'
+import { Auth, Kanban, Main, NotFound } from '../index.ts'
 
 export enum RoutePaths {
   MAIN = '/',
   SIGNUP = '/signup',
   AUTH = '/auth',
   KANBAN = '/kanban',
-  NOT_FOUND = '/not-found',
+  NOT_FOUND = '*',
 }
 
 export enum RouteNames {
@@ -25,6 +25,10 @@ export const publicRoutes: TRoute[] = [
     path: RoutePaths.AUTH,
     element: Auth,
   },
+  {
+    path: RoutePaths.NOT_FOUND,
+    element: NotFound,
+  },
 ]
 
 export const privateRoutes: TRoute[] = [
@@ -33,3 +37,10 @@ export const privateRoutes: TRoute[] = [
     element: Kanban,
   },
 ]
+
+export const notAllowedRoute: TRoute[] = privateRoutes.map(({ path }) => {
+  return {
+    path: path,
+    element: Auth,
+  }
+})

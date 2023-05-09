@@ -1,17 +1,17 @@
 import { Route, Routes } from 'react-router-dom'
-import { privateRoutes, publicRoutes } from './routes.ts'
+import { privateRoutes, publicRoutes, notAllowedRoute } from './routes.ts'
+import { TRoute } from './types'
 
 export const Router = () => {
   const auth = true
-  return auth ? (
+
+  const availableRoutes: TRoute[] = auth
+    ? [...publicRoutes, ...privateRoutes]
+    : [...publicRoutes, ...notAllowedRoute]
+
+  return (
     <Routes>
-      {privateRoutes.map(({ path, element }) => (
-        <Route key={path} path={path} element={element()} />
-      ))}
-    </Routes>
-  ) : (
-    <Routes>
-      {publicRoutes.map(({ path, element }) => (
+      {availableRoutes.map(({ path, element }) => (
         <Route key={path} path={path} element={element()} />
       ))}
     </Routes>
