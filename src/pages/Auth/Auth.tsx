@@ -6,6 +6,7 @@ import {
 } from './validation-schema.ts'
 import { TAuthData } from './types.ts'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
+import styles from './styles.module.scss'
 
 export const Auth = (): JSX.Element => {
   const handleSubmit = (values: TAuthData) => {
@@ -13,13 +14,13 @@ export const Auth = (): JSX.Element => {
   }
 
   return (
-    <div className="auth">
-      <h1 className="auth__title title">Авторизация</h1>
+    <div className={styles.auth}>
+      <h1 className={styles.auth__title}>Авторизация</h1>
       <Formik
         initialValues={INITIAL_FORM_STATE}
         validationSchema={AUTH_VALIDATION_SCHEMA}
         onSubmit={handleSubmit}>
-        <Form>
+        <Form className={styles.auth__form}>
           <TextFieldAuth fullWidth name="login" type="text" label="Логин" />
           <TextFieldAuth
             fullWidth

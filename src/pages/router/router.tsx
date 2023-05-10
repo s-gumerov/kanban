@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { privateRoutes, publicRoutes, notAllowedRoute } from './routes.ts'
+import { privateRoutes, publicRoutes, notAllowedRoutes } from './routes.ts'
 import { TRoute } from './types'
 
 export const Router = () => {
@@ -7,7 +7,7 @@ export const Router = () => {
 
   const availableRoutes: TRoute[] = auth
     ? [...publicRoutes, ...privateRoutes]
-    : [...publicRoutes, ...notAllowedRoute]
+    : [...publicRoutes, ...notAllowedRoutes]
 
   return (
     <Routes>

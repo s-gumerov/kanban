@@ -38,7 +38,7 @@ export const privateRoutes: TRoute[] = [
   },
 ]
 
-export const notAllowedRoute: TRoute[] = privateRoutes.map(({ path }) => {
+export const notAllowedRoutes: TRoute[] = privateRoutes.map(({ path }) => {
   return {
     path: path,
     element: Auth,

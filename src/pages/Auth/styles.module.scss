@@ -1,0 +1,33 @@
+@use '../../assets/styles/colors' as *;
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+
+  &__title {
+    color: $page_title;
+    font-weight: 200;
+    font-size: 3em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 4px;
+    width: 350px;
+
+    @media (max-width: 639px) {
+      width: 337px;
+    }
+    @media (max-width: 479px) {
+      width: 80%;
+    }
+  }
+
+}
