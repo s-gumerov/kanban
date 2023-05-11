@@ -18,6 +18,7 @@ export const Auth = (): JSX.Element => {
   return (
     <div className={styles.auth}>
       <h1 className={styles.auth__title}>Авторизация</h1>
+      <Link to={RoutePaths.SIGNUP}>Нет аккаунта? Зарегистрироваться</Link>
       <Formik
         initialValues={INITIAL_FORM_STATE}
         validationSchema={AUTH_VALIDATION_SCHEMA}
@@ -40,7 +41,6 @@ export const Auth = (): JSX.Element => {
           </Button>
         </Form>
       </Formik>
-      <Link to={RoutePaths.SIGNUP}>Зарегистрироваться</Link>
     </div>
   )
 }
