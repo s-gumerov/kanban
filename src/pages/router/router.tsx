@@ -3,7 +3,7 @@ import { privateRoutes, publicRoutes, notAllowedRoutes } from './routes.ts'
 import { TRoute } from './types'
 
 export const Router = () => {
-  const auth = true
+  const auth = false
 
   const availableRoutes: TRoute[] = auth
     ? [...publicRoutes, ...privateRoutes]

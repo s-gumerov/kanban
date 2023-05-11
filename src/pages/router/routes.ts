@@ -1,5 +1,5 @@
 import type { TRoute } from './types.ts'
-import { Auth, Kanban, Main, NotFound } from '../index.ts'
+import { Auth, Kanban, Main, NotFound, Signup } from '../index.ts'
 
 export enum RoutePaths {
   MAIN = '/',
@@ -20,6 +20,10 @@ export const publicRoutes: TRoute[] = [
   {
     path: RoutePaths.MAIN,
     element: Main,
+  },
+  {
+    path: RoutePaths.SIGNUP,
+    element: Signup,
   },
   {
     path: RoutePaths.AUTH,
