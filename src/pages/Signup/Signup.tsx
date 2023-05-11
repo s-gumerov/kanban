@@ -7,6 +7,8 @@ import {
 import type { TSignupData } from './types.ts'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from '../Auth/styles.module.scss'
+import { Link } from 'react-router-dom'
+import { RoutePaths } from '../router/routes.ts'
 
 export const Signup = (): JSX.Element => {
   const handleSubmit = (values: TSignupData) => {
@@ -15,7 +17,7 @@ export const Signup = (): JSX.Element => {
 
   return (
     <div className={styles.auth}>
-      <h1 className={styles.auth__title}>Авторизация</h1>
+      <h1 className={styles.auth__title}>Регистрация</h1>
       <Formik
         initialValues={INITIAL_FORM_STATE}
         validationSchema={SIGNUP_VALIDATION_SCHEMA}
@@ -54,10 +56,11 @@ export const Signup = (): JSX.Element => {
             variant="contained"
             size="large"
             sx={{ mt: 4 }}>
-            Войти
+            Зарегистрироваться
           </Button>
         </Form>
       </Formik>
+      <Link to={RoutePaths.AUTH}>Войти</Link>
     </div>
   )
 }
