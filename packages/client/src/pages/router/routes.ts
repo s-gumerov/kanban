@@ -1,5 +1,5 @@
-import type { TRoute } from './types.ts'
-import { Auth, Kanban, Main, NotFound, Signup } from '../index.ts'
+import type { TRoute } from './types'
+import { Auth, Kanban, Main, NotFound, Signup } from '../index'
 
 export enum RoutePaths {
   MAIN = '/',
