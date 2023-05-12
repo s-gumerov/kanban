@@ -1,14 +1,11 @@
 import { Formik, Form } from 'formik'
 import { Button } from '@mui/material'
-import {
-  AUTH_VALIDATION_SCHEMA,
-  INITIAL_FORM_STATE,
-} from './validation-schema.ts'
-import type { TAuthData } from './types.ts'
+import { AUTH_VALIDATION_SCHEMA, INITIAL_FORM_STATE } from './validation-schema'
+import type { TAuthData } from './types'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from './styles.module.scss'
 import { Link } from 'react-router-dom'
-import { RoutePaths } from '../router/routes.ts'
+import { RoutePaths } from '../router/routes'
 
 export const Auth = (): JSX.Element => {
   const handleSubmit = (values: TAuthData) => {

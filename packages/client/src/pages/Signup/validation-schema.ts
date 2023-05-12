@@ -5,8 +5,8 @@ import {
   PUBLIC_NAME_REGEXP,
   PASSWORD_REGEXP,
   PHONE_REGEXP,
-} from '../../utils/validationRegExps.ts'
-import type { TSignupData } from './types.ts'
+} from '../../utils/validationRegExps'
+import type { TSignupData } from './types'
 
 export const INITIAL_FORM_STATE: TSignupData = {
   email: '',

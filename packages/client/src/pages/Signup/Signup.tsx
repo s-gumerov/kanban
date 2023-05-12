@@ -3,12 +3,12 @@ import { Button } from '@mui/material'
 import {
   SIGNUP_VALIDATION_SCHEMA,
   INITIAL_FORM_STATE,
-} from './validation-schema.ts'
-import type { TSignupData } from './types.ts'
+} from './validation-schema'
+import type { TSignupData } from './types'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from '../Auth/styles.module.scss'
 import { Link } from 'react-router-dom'
-import { RoutePaths } from '../router/routes.ts'
+import { RoutePaths } from '../router/routes'
 
 export const Signup = (): JSX.Element => {
   const handleSubmit = (values: TSignupData) => {

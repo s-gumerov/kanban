@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { privateRoutes, publicRoutes, notAllowedRoutes } from './routes.ts'
+import { privateRoutes, publicRoutes, notAllowedRoutes } from './routes'
 import { TRoute } from './types'
 
 export const Router = () => {
