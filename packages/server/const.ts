@@ -1,1 +1,1 @@
-export const CLIENT_DIR = '../client/dist/client/'
+export const CLIENT_DIR = '../client/dist/'

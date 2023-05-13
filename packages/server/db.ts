@@ -1,0 +1,29 @@
+import { Sequelize, SequelizeOptions, DataType } from 'sequelize-typescript'
+
+const sequelizeOptions: SequelizeOptions = {
+  host: 'localhost',
+  port: 5432,
+  username: 'postgres',
+  password: 'postgres',
+  database: 'postgres',
+  dialect: 'postgres',
+}
+const sequelize = new Sequelize(sequelizeOptions)
+
+const Users = sequelize.define('Users', {
+  id: {
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  yandex_id: DataType.INTEGER,
+  email: DataType.STRING,
+  login: DataType.STRING,
+  full_name: DataType.STRING,
+  public_name: DataType.STRING,
+  phone: DataType.STRING,
+  password: DataType.STRING,
+  avatar_url: DataType.STRING,
+})
+
+export { sequelize, Users }

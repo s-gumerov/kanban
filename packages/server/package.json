@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rm -rf ./dist && tsc --p ./tsconfig.prod.json",
     "preview": "node ./dist/index.js",
-    "dev": "NODE_ENV=development nodemon index.ts",
+    "dev": "docker-compose up && NODE_ENV=development nodemon index.ts",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "jest ."
@@ -17,6 +17,7 @@
     "eslint": "8.40.0",
     "nodemon": "2.0.22",
     "prettier": "2.8.8",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "10.9.1",
     "typescript": "5.0.4"
   },
