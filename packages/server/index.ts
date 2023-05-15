@@ -2,6 +2,7 @@ import express from 'express'
 import * as path from 'path'
 import { CLIENT_DIR } from './const'
 import { sequelize } from './db'
+import { router } from './routes/api'
 
 sequelize
   .authenticate()
@@ -15,5 +16,6 @@ app.use(express.static(path.join(__dirname, CLIENT_DIR)))
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, CLIENT_DIR + 'index.html'))
 )
+app.use(router)
 app.listen(PORT)
 console.log('server started')
