@@ -16,7 +16,6 @@ const Users = sequelize.define('Users', {
     primaryKey: true,
     autoIncrement: true,
   },
-  yandex_id: DataType.INTEGER,
   email: DataType.STRING,
   login: DataType.STRING,
   full_name: DataType.STRING,
