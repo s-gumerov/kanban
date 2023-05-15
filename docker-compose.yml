@@ -3,6 +3,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:14
+    env_file: .env
     restart: always
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
@@ -15,6 +16,7 @@ services:
   pgadmin:
     container_name: pgadmin4_container
     image: dpage/pgadmin4
+    env_file: .env
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: fifteen@admin.com
