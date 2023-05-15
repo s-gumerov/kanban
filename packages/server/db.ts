@@ -10,7 +10,7 @@ const sequelizeOptions: SequelizeOptions = {
 }
 const sequelize = new Sequelize(sequelizeOptions)
 
-const Users = sequelize.define('Users', {
+const User = sequelize.define('Users', {
   id: {
     type: DataType.INTEGER,
     primaryKey: true,
@@ -25,4 +25,4 @@ const Users = sequelize.define('Users', {
   avatar_url: DataType.STRING,
 })
 
-export { sequelize, Users }
+export { sequelize, User }
