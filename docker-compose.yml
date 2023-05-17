@@ -1,4 +1,4 @@
-version: "3.9"
+version: "1.0"
 
 services:
   postgres:
@@ -19,7 +19,7 @@ services:
     env_file: .env
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: fifteen@admin.com
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5050:80"
