@@ -18,7 +18,7 @@ export namespace setNewUser {
 
   /** Параметры api ответа */
   export interface Response {
-    user_id: number
+    user_id: number | undefined
   }
 }
 

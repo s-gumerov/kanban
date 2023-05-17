@@ -9,10 +9,12 @@ import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from '../Auth/styles.module.scss'
 import { Link } from 'react-router-dom'
 import { RoutePaths } from '../router/routes'
+import { signUp } from '../../api/auth/Auth'
 
 export const Signup = (): JSX.Element => {
   const handleSubmit = (values: TSignupData) => {
     console.log(values)
+    signUp(values)
   }
 
   return (

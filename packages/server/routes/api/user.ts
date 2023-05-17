@@ -7,7 +7,6 @@ export const userRouter = Router()
 userRouter.post(setNewUser.route, async (req: Request, res: Response) => {
   const { email, login, full_name, public_name, phone, password, avatar_url } =
     req.body
-
   const newUser = await User.create({
     email: email,
     login: login,

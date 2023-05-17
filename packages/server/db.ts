@@ -10,7 +10,7 @@ const sequelizeOptions: SequelizeOptions = {
 }
 const sequelize = new Sequelize(sequelizeOptions)
 
-const User = sequelize.define('Users', {
+const User = sequelize.define('User', {
   id: {
     type: DataType.INTEGER,
     primaryKey: true,
@@ -23,6 +23,11 @@ const User = sequelize.define('Users', {
   phone: DataType.STRING,
   password: DataType.STRING,
   avatar_url: DataType.STRING,
+},
+{
+  freezeTableName:true
 })
+
+User.sync()
 
 export { sequelize, User }
