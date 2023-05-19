@@ -1,6 +1,8 @@
 import { Router, Request, Response } from 'express'
 import { setNewUser, getUser } from '../models/user'
 import { User } from '../../db'
+import type { TBadRequest } from './type'
+
 
 export const userRouter = Router()
 
@@ -20,8 +22,16 @@ userRouter.post(setNewUser.route, async (req: Request, res: Response) => {
   await newUser.save()
   const users = await User.findAll()
   const id = users[users.length - 1].dataValues.id
-  const result: setNewUser.Response = { user_id: id }
-  res.send(result)
+
+  if(id) {
+    const result: setNewUser.Response = { user_id: id }
+    return res.send(result)
+  } else {
+    const badRequest: TBadRequest = {
+      reason: "Пользователь уже существует"
+    }
+    return res.send(badRequest)
+  }
 })
 
 userRouter.get(getUser.route, async (req, res) => {

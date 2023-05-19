@@ -7,14 +7,24 @@ import {
 import type { TSignupData } from './types'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from '../Auth/styles.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../router/routes'
 import { signUp } from '../../api/auth/Auth'
+import { setNewUser } from '../../../../server/routes/models/user'
+
 
 export const Signup = (): JSX.Element => {
-  const handleSubmit = (values: TSignupData) => {
-    console.log(values)
-    signUp(values)
+  const navigate = useNavigate()
+  const handleSubmit = async(values: TSignupData) => {
+
+    const response = await signUp(values) as object
+    
+    if('user_id' in response) {
+     return navigate(RoutePaths.KANBAN)
+    }
+
+   if('reason' in response)
+   return alert(response.reason)
   }
 
   return (
