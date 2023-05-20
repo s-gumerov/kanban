@@ -10,20 +10,20 @@ import styles from '../Auth/styles.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../router/routes'
 import { signUp } from '../../api/auth/Auth'
-import { setNewUser } from '../../../../server/routes/models/user'
 
 
 export const Signup = (): JSX.Element => {
   const navigate = useNavigate()
   const handleSubmit = async(values: TSignupData) => {
-
-    const response = await signUp(values) as object
     
-    if('user_id' in response) {
-     return navigate(RoutePaths.KANBAN)
+    const response = await signUp(values)
+    if (!response || typeof response !== 'object') {
+      return
     }
-    
-    if('reason' in response) {
+
+    if('user_id' in response) {
+      return navigate(RoutePaths.KANBAN)
+    } else if('reason' in response) {
       return alert(response.reason)
     }
   }
