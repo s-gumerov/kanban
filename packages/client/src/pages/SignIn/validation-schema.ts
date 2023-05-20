@@ -1,8 +1,8 @@
 import * as Yup from 'yup'
 import { LOGIN_REGEXP, PASSWORD_REGEXP } from '../../utils/validationRegExps'
-import type { TAuthData } from './types'
+import type { TSignInData } from './types'
 
-export const INITIAL_FORM_STATE: TAuthData = {
+export const INITIAL_FORM_STATE: TSignInData = {
   login: '',
   password: '',
 }

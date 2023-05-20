@@ -1,4 +1,4 @@
-export * from './Auth'
+export * from './SignIn'
 export * from './Kanban'
 export * from './Main'
 export * from './NotFound'

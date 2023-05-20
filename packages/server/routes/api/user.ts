@@ -1,21 +1,20 @@
 import { Router, Request, Response } from 'express'
-import { setNewUser, getUser } from '../models/user'
+import { signup, signin, getUser } from '../models/user'
 import { User } from '../../db'
 import type { TBadRequest } from './type'
-import { where } from 'sequelize'
 
 
 export const userRouter = Router()
 
-userRouter.post(setNewUser.route, async (req: Request, res: Response) => {
-  const { email, login, full_name, public_name, phone, password, avatar_url } =
-    req.body
+userRouter.post(signup.route, async (req: Request, res: Response) => {
+  const { email, login, full_name, public_name, phone, password, avatar_url } = req.body
 
   const [user, created] = await User.findOrCreate({
     where: {
-      email: email,
+      login: login,
     },
     defaults: {
+      email: email,
       login: login,
       full_name: full_name,
       public_name: public_name,
@@ -28,17 +27,44 @@ userRouter.post(setNewUser.route, async (req: Request, res: Response) => {
   if(created) {
     const users = await User.findAll()
     const id = users[users.length - 1].dataValues.id
-    const result: setNewUser.Response = { user_id: id }
+    const result: signup.Response = { user_id: id }
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
-      reason: "Email уже используется"
+      reason: "Логин уже используется"
     }
     return res.send(badRequest)
   }
 })
 
-userRouter.get(getUser.route, async (req, res) => {
+userRouter.post(signin.route, async (req: Request, res: Response) => {
+  const { login, password } = req.body
+  
+  const user = await User.findOne({
+    where: {
+      login: login
+    }
+  })
+
+  if(!user) {
+    const badRequest: TBadRequest = {
+      reason: "Пользователь не найден"
+    }
+    return res.send(badRequest)
+  }
+
+  if(user.dataValues.password === password) {
+    const result: signup.Response = { user_id: user.dataValues.id }
+    return res.send(result)
+  } else {
+    const badRequest: TBadRequest = {
+      reason: "Не правильный пароль, попробуйте еще раз"
+    }
+    return res.send(badRequest)
+}
+})
+
+userRouter.get(getUser.route, async (req: Request, res: Response) => {
   const user = await User.findOne({
     where: {
       id: req.body.user_id,

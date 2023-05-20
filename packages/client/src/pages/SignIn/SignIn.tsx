@@ -1,15 +1,29 @@
 import { Formik, Form } from 'formik'
 import { Button } from '@mui/material'
 import { AUTH_VALIDATION_SCHEMA, INITIAL_FORM_STATE } from './validation-schema'
-import type { TAuthData } from './types'
+import type { TSignInData } from './types'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from './styles.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../router/routes'
+import { signIn } from '../../api/auth/Auth'
 
-export const Auth = (): JSX.Element => {
-  const handleSubmit = (values: TAuthData) => {
-    console.log(values)
+export const SignIn = (): JSX.Element => {
+  const navigate = useNavigate()
+
+  const handleSubmit = async (values: TSignInData) => {
+    const response = await signIn(values)
+    
+    if (!response || typeof response !== 'object') {
+      return
+    }
+
+    if('user_id' in response) {
+      return navigate(RoutePaths.KANBAN)
+    } else if('reason' in response) {
+      return alert(response.reason)
+    }
+    
   }
 
   return (

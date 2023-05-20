@@ -6,7 +6,7 @@ import {
 } from './validation-schema'
 import type { TSignupData } from './types'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
-import styles from '../Auth/styles.module.scss'
+import styles from '../SignIn/styles.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../router/routes'
 import { signUp } from '../../api/auth/Auth'
@@ -14,9 +14,10 @@ import { signUp } from '../../api/auth/Auth'
 
 export const Signup = (): JSX.Element => {
   const navigate = useNavigate()
+
   const handleSubmit = async(values: TSignupData) => {
-    
     const response = await signUp(values)
+    
     if (!response || typeof response !== 'object') {
       return
     }
@@ -31,7 +32,7 @@ export const Signup = (): JSX.Element => {
   return (
     <div className={styles.auth}>
       <h1 className={styles.auth__title}>Регистрация</h1>
-      <Link to={RoutePaths.AUTH}>Уже зарегистрированы? Войти</Link>
+      <Link to={RoutePaths.SIGNIN}>Уже зарегистрированы? Войти</Link>
       <Formik
         initialValues={INITIAL_FORM_STATE}
         validationSchema={SIGNUP_VALIDATION_SCHEMA}

@@ -1,9 +1,9 @@
 /**
  * Добавить пользователя в БД
  */
-export namespace setNewUser {
+export namespace signup {
   /** API URL */
-  export const route = '/set-new-user'
+  export const route = '/signup'
 
   /** Параметры api запроса */
   export interface Request {
@@ -14,6 +14,25 @@ export namespace setNewUser {
     phone: string
     password: string
     avatar_url?: string
+  }
+
+  /** Параметры api ответа */
+  export interface Response {
+    user_id: number 
+  } 
+}
+
+/**
+ * Получить из БД id пользователя
+ */
+export namespace signin {
+  /** API URL */
+  export const route = '/signin'
+
+  /** Параметры api запроса */
+  export interface Request {
+    login: string
+    password: string
   }
 
   /** Параметры api ответа */
