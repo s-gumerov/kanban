@@ -4,19 +4,19 @@ import {
   SIGNUP_VALIDATION_SCHEMA,
   INITIAL_FORM_STATE,
 } from './validation-schema'
-import type { TSignupData } from './types'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from '../SignIn/styles.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../router/routes'
 import { signUp } from '../../api/auth/Auth'
+import type { TSignupData } from '../../api/auth/types'
 
 
 export const Signup = (): JSX.Element => {
   const navigate = useNavigate()
 
   const handleSubmit = async(values: TSignupData) => {
-    const response = await signUp(values)
+    const response = signUp(values)
     
     if (!response || typeof response !== 'object') {
       return

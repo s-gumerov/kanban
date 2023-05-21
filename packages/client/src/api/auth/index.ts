@@ -1,1 +1,1 @@
-import { axiosInstance } from '../axios'
+export * from './Auth'

@@ -3,7 +3,7 @@
  */
 export namespace signup {
   /** API URL */
-  export const route = '/signup'
+  export const route = 'user/signup'
 
   /** Параметры api запроса */
   export interface Request {
@@ -27,7 +27,7 @@ export namespace signup {
  */
 export namespace signin {
   /** API URL */
-  export const route = '/signin'
+  export const route = 'user/signin'
 
   /** Параметры api запроса */
   export interface Request {

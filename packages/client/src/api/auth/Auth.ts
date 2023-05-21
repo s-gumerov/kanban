@@ -1,7 +1,6 @@
-import { TSignupData } from "../../pages/Signup/types"
 import { axiosInstance } from "../axios"
 import { signup, signin } from "../../../../server/routes/models/user"
-import { TSignInData } from "../../pages/SignIn/types"
+import type { TSignInData, TSignupData } from "./types"
 
 export const signUp = async (data: TSignupData) => {
     

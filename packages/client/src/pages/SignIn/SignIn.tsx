@@ -1,12 +1,12 @@
 import { Formik, Form } from 'formik'
 import { Button } from '@mui/material'
 import { AUTH_VALIDATION_SCHEMA, INITIAL_FORM_STATE } from './validation-schema'
-import type { TSignInData } from './types'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from './styles.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../router/routes'
 import { signIn } from '../../api/auth/Auth'
+import type { TSignInData } from '../../api/auth/types'
 
 export const SignIn = (): JSX.Element => {
   const navigate = useNavigate()
