@@ -5,3 +5,7 @@ export type TUserState = {
     error: string | null
     status: 'INIT' | 'FETCHING' | 'FETCH_FULFILLED' | 'FETCH_FAILED' | null
   }
+  
+export type TInitialState = {
+  user: TUserState,
+}

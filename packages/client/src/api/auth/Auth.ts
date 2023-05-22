@@ -20,7 +20,7 @@ export const signUp = async (data: TSignupData) => {
 export const signIn = async (data: TSignInData) => {
     
     try {
-        const result = await axiosInstance<signin.Response>(signin.route, {
+        const result = await axiosInstance(signin.route, {
             method: 'post',
             data
         })

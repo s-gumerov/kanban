@@ -27,7 +27,7 @@ userRouter.post(signup.route, async (req: Request, res: Response) => {
   if(created) {
     const users = await User.findAll()
     const id = users[users.length - 1].dataValues.id
-    const result: signup.Response = { user_id: id }
+    const result: signup.Response = { id: id }
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
@@ -54,7 +54,7 @@ userRouter.post(signin.route, async (req: Request, res: Response) => {
   }
 
   if(user.dataValues.password === password) {
-    const result: signup.Response = { user_id: user.dataValues.id }
+    const result: signup.Response = user.dataValues
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
@@ -67,7 +67,7 @@ userRouter.post(signin.route, async (req: Request, res: Response) => {
 userRouter.get(getUser.route, async (req: Request, res: Response) => {
   const user = await User.findOne({
     where: {
-      id: req.body.user_id,
+      id: req.body.id,
     },
   })
   if (user) {

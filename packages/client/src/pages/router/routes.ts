@@ -3,8 +3,8 @@ import { SignIn, Kanban, Main, NotFound, Signup } from '../index'
 
 export enum RoutePaths {
   MAIN = '/',
-  SIGNUP = '/signup',
-  SIGNIN = '/signin',
+  SIGNUP = '/user/signup',
+  SIGNIN = '/user/signin',
   KANBAN = '/kanban',
   NOT_FOUND = '*',
 }

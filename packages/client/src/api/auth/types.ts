@@ -12,6 +12,6 @@ export type TSignupData = {
   } & TSignInData
 
   export type TUserData = {
-    user_id: number
+    id: number
     avatar?: string
-  } & Omit<TSignupData, 'password'>
+  } & Omit<TSignupData, 'password' | 'password_again'>

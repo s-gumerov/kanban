@@ -7,21 +7,24 @@ import { Link, useNavigate } from 'react-router-dom'
 import { RoutePaths } from '../router/routes'
 import { signIn } from '../../api/auth/Auth'
 import type { TSignInData } from '../../api/auth/types'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { signInByThunk } from '../../store/user/userSlice'
 
 export const SignIn = (): JSX.Element => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const handleSubmit = async (values: TSignInData) => {
-    const response = await signIn(values)
+    const response = await dispatch(signInByThunk(values))
     
-    if (!response || typeof response !== 'object') {
+    if (!response.payload || typeof response.payload !== 'object') {
       return
     }
 
-    if('user_id' in response) {
+    if('id' in response.payload) {
       return navigate(RoutePaths.KANBAN)
-    } else if('reason' in response) {
-      return alert(response.reason)
+    } else if('reason' in response.payload) {
+      return alert(response.payload.reason)
     }
     
   }

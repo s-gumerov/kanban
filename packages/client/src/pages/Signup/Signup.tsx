@@ -22,7 +22,7 @@ export const Signup = (): JSX.Element => {
       return
     }
 
-    if('user_id' in response) {
+    if('id' in response) {
       return navigate(RoutePaths.KANBAN)
     } else if('reason' in response) {
       return alert(response.reason)
