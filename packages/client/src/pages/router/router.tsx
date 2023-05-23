@@ -5,18 +5,17 @@ import { useEffect, useState } from 'react'
 import { useAppSelector } from '../../hooks/useAppDispatch'
 
 export const Router = () => {
-  const { user } = useAppSelector(state => state.user)
-  console.log(user);
-  
-  const [availableRoutes, setAavailableRoutes] = useState([...publicRoutes, ...notAllowedRoutes])
+  const getUserRoutes = (userId: number | undefined): TRoute[] => {
+    return userId ? [...publicRoutes, ...privateRoutes] : [...publicRoutes, ...notAllowedRoutes]
+  }
 
-  useEffect(()=>{
-if(user && user.id) {
-  setAavailableRoutes([...publicRoutes, ...privateRoutes])
-} else {
-  setAavailableRoutes([...publicRoutes, ...notAllowedRoutes])
-}
-  },[user])
+  const { user } = useAppSelector(state => state.user)
+
+  const [availableRoutes, setAavailableRoutes] = useState<TRoute[]>(getUserRoutes(user?.id))
+  
+  useEffect(()=> {
+    setAavailableRoutes(getUserRoutes(user?.id))
+  },[user?.id])
 
 
   return (
