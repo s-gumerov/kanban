@@ -9,7 +9,7 @@ export const userRouter = Router()
 userRouter.post(signup.route, async (req: Request, res: Response) => {
   const { email, login, full_name, public_name, phone, password, avatar_url } = req.body
 
-  const [created] = await User.findOrCreate({
+  const [, created] = await User.findOrCreate({
     where: {
       login: login,
     },
