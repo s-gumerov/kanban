@@ -9,7 +9,7 @@ export const userRouter = Router()
 userRouter.post(signup.route, async (req: Request, res: Response) => {
   const { email, login, full_name, public_name, phone, password, avatar_url } = req.body
 
-  const [user, created] = await User.findOrCreate({
+  const [created] = await User.findOrCreate({
     where: {
       login: login,
     },
@@ -26,8 +26,7 @@ userRouter.post(signup.route, async (req: Request, res: Response) => {
   
   if(created) {
     const users = await User.findAll()
-    const id = users[users.length - 1].dataValues.id
-    const result: signup.Response = { id: id }
+    const result: signup.Response = users[users.length - 1].dataValues
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
