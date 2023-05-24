@@ -5,7 +5,7 @@ import type { TSignInData, TSignupData } from "./types"
 export const signUp = async (data: TSignupData) => {
     
     try {
-        const result = await axiosInstance<signup.Response>(signup.route, {
+        const result = await axiosInstance(signup.route, {
             method: 'post',
             data
         })
