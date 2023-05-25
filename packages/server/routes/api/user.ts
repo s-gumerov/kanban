@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { signup, signin, getUser } from '../models/user'
+import { signup, signin } from '../models/user'
 import { User } from '../../db'
 import type { TBadRequest } from './type'
 
@@ -61,30 +61,4 @@ userRouter.post(signin.route, async (req: Request, res: Response) => {
     }
     return res.send(badRequest)
 }
-})
-
-userRouter.get(getUser.route, async (req: Request, res: Response) => {
-  const user = await User.findOne({
-    where: {
-      id: req.body.id,
-    },
-  })
-  if (user) {
-    const result: getUser.Response = {
-      id: user.dataValues.id,
-      email: user.dataValues.email,
-      login: user.dataValues.login,
-      full_name: user.dataValues.full_name,
-      public_name: user.dataValues.public_name,
-      phone: user.dataValues.phone,
-      password: user.dataValues.password,
-      avatar_url: user.dataValues.avatar_url,
-    }
-    return res.send(result)
-  } else {
-    const badRequest: TBadRequest = {
-      reason: "Пользователь не найден"
-    }
-    return res.send(badRequest)
-  }
 })

@@ -40,28 +40,3 @@ export namespace signin {
     id: number 
   } 
 }
-
-/**
- * Получить данные пользователя по id
- */
-export namespace getUser {
-  /** API URL */
-  export const route = '/get-user'
-
-  /** Параметры api запроса */
-  export interface Request {
-    id: number
-  }
-
-  /** Параметры api ответа */
-  export interface Response {
-    id: number
-    email: string
-    login: string
-    full_name: string
-    public_name: string
-    phone: string
-    password: string
-    avatar_url: string
-  }
-}
