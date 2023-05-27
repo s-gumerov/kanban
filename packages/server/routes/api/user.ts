@@ -12,6 +12,7 @@ userRouter.post(signup.route, async (req: Request, res: Response) => {
   const [, created] = await User.findOrCreate({
     where: {
       login: login,
+      email: email,
     },
     defaults: {
       email: email,
