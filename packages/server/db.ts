@@ -30,4 +30,19 @@ const User = sequelize.define('User', {
 
 User.sync()
 
+const Board = sequelize.define('Board', {
+  id: {
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  name: DataType.STRING,
+  avatar_url: DataType.STRING,
+},
+{
+  freezeTableName:true
+})
+
+User.sync()
+
 export { sequelize, User }
