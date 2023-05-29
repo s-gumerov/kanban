@@ -25,10 +25,41 @@ const User = sequelize.define('User', {
   avatar_url: DataType.STRING,
 },
 {
-  freezeTableName:true
+  freezeTableName: false
 })
 
 User.sync()
+
+
+type TRoles = 'owner' | 'editor' | 'reader'
+
+const Roles = sequelize.define('Role', {
+  id: {
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  name: DataType.STRING,
+},
+{
+  freezeTableName: false
+})
+
+Roles.sync()
+
+const defaultRoles: TRoles[] = ['owner', 'editor', 'reader']
+
+defaultRoles.forEach(roleName => {
+  return Roles.findOrCreate({
+    where: {
+      name: roleName,
+    },
+    defaults: {
+      name: roleName,
+    }
+  })
+})
+
 
 const Board = sequelize.define('Board', {
   id: {
