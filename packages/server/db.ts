@@ -23,6 +23,7 @@ const User = sequelize.define('User', {
   phone: DataType.STRING,
   password: DataType.STRING,
   avatar_url: DataType.STRING,
+  boards_id: DataType.ARRAY(DataType.STRING)
 },
 {
   freezeTableName: false
@@ -67,13 +68,14 @@ const Board = sequelize.define('Board', {
     primaryKey: true,
     autoIncrement: true,
   },
+  creator: DataType.STRING,
   name: DataType.STRING,
   avatar_url: DataType.STRING,
 },
 {
-  freezeTableName:true
+  freezeTableName: false
 })
 
-User.sync()
+Board.sync()
 
 export { sequelize, User }
