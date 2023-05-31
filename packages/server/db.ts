@@ -31,6 +31,23 @@ const User = sequelize.define('User', {
 
 User.sync()
 
+/* создаем тестового пользователя */
+User.findOrCreate({
+  where: {
+    email: "admin@kanban.ru",
+  },
+  defaults: {
+    email: "admin@kanban.ru",
+    login: "admin",
+    full_name: "admin admin admin",
+    public_name: "admin",
+    phone: "88005553535",
+    password: "22102016",
+    avatar_url: "",
+    boards_id: [1,2,3]
+  }
+})
+
 
 type TRoles = 'owner' | 'editor' | 'reader'
 
