@@ -10,7 +10,7 @@ const sequelizeOptions: SequelizeOptions = {
 }
 const sequelize = new Sequelize(sequelizeOptions)
 
-const User = sequelize.define('User', {
+const User = sequelize.define('tb_user', {
   id: {
     type: DataType.INTEGER,
     primaryKey: true,
@@ -23,7 +23,7 @@ const User = sequelize.define('User', {
   phone: DataType.STRING,
   password: DataType.STRING,
   avatar_url: DataType.STRING,
-  boards_id: DataType.ARRAY(DataType.STRING)
+  boards_id: DataType.ARRAY(DataType.INTEGER)
 },
 {
   freezeTableName: false
@@ -49,9 +49,9 @@ User.findOrCreate({
 })
 
 
-type TRoles = 'owner' | 'editor' | 'reader'
+type TBoardRole = 'owner' | 'editor' | 'reader'
 
-const Roles = sequelize.define('Role', {
+const BoardRoles = sequelize.define('tb_board_role', {
   id: {
     type: DataType.INTEGER,
     primaryKey: true,
@@ -63,12 +63,12 @@ const Roles = sequelize.define('Role', {
   freezeTableName: false
 })
 
-Roles.sync()
+BoardRoles.sync()
 
-const defaultRoles: TRoles[] = ['owner', 'editor', 'reader']
+const defaultBoardRoles: TBoardRole[] = ['owner', 'editor', 'reader']
 
-defaultRoles.forEach(roleName => {
-  return Roles.findOrCreate({
+defaultBoardRoles.forEach( roleName => {
+  return BoardRoles.findOrCreate({
     where: {
       name: roleName,
     },
@@ -79,13 +79,29 @@ defaultRoles.forEach(roleName => {
 })
 
 
-const Board = sequelize.define('Board', {
+const Board = sequelize.define('tb_board', {
   id: {
     type: DataType.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
   creator: DataType.STRING,
+  name: DataType.STRING,
+  avatar_url: DataType.STRING,
+},
+{
+  freezeTableName: false
+})
+
+Board.sync()
+
+const BoardRights = sequelize.define('tb_board_right', {
+  id: {
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  collection_id: DataType.INTEGER,
   name: DataType.STRING,
   avatar_url: DataType.STRING,
 },
