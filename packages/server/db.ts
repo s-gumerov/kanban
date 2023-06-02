@@ -109,6 +109,6 @@ const BoardRights = sequelize.define('tb_board_right', {
   freezeTableName: false
 })
 
-Board.sync()
+BoardRights.sync()
 
 export { sequelize, User }
