@@ -23,30 +23,13 @@ const User = sequelize.define('tb_user', {
   phone: DataType.STRING,
   password: DataType.STRING,
   avatar_url: DataType.STRING,
-  boards_id: DataType.ARRAY(DataType.INTEGER)
+  board_rights_arr: DataType.ARRAY(DataType.INTEGER)
 },
 {
   freezeTableName: false
 })
 
 User.sync()
-
-/* создаем тестового пользователя */
-User.findOrCreate({
-  where: {
-    email: "admin@kanban.ru",
-  },
-  defaults: {
-    email: "admin@kanban.ru",
-    login: "admin",
-    full_name: "admin admin admin",
-    public_name: "admin",
-    phone: "88005553535",
-    password: "22102016",
-    avatar_url: "",
-    boards_id: [1,2,3]
-  }
-})
 
 
 type TBoardRole = 'owner' | 'editor' | 'reader'
@@ -64,20 +47,6 @@ const BoardRoles = sequelize.define('tb_board_role', {
 })
 
 BoardRoles.sync()
-
-const defaultBoardRoles: TBoardRole[] = ['owner', 'editor', 'reader']
-
-defaultBoardRoles.forEach( roleName => {
-  return BoardRoles.findOrCreate({
-    where: {
-      name: roleName,
-    },
-    defaults: {
-      name: roleName,
-    }
-  })
-})
-
 
 const Board = sequelize.define('tb_board', {
   id: {
@@ -101,14 +70,27 @@ const BoardRights = sequelize.define('tb_board_right', {
     primaryKey: true,
     autoIncrement: true,
   },
-  collection_id: DataType.INTEGER,
-  name: DataType.STRING,
-  avatar_url: DataType.STRING,
+  board_id: DataType.INTEGER,
+  collection_id: DataType.STRING,
+  role_id: DataType.STRING,
 },
 {
   freezeTableName: false
 })
 
 BoardRights.sync()
+
+const defaultBoardRoles: TBoardRole[] = ['owner', 'editor', 'reader']
+
+defaultBoardRoles.forEach( roleName => {
+  return BoardRoles.findOrCreate({
+    where: {
+      name: roleName,
+    },
+    defaults: {
+      name: roleName,
+    }
+  })
+})
 
 export { sequelize, User }
