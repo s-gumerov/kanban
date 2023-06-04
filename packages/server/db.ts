@@ -12,7 +12,7 @@ const sequelize = new Sequelize(sequelizeOptions)
 
 const User = sequelize.define('tb_user', {
   id: {
-    type: DataType.INTEGER,
+    type: DataType.BIGINT,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -36,7 +36,7 @@ type TBoardRole = 'owner' | 'editor' | 'reader'
 
 const BoardRoles = sequelize.define('tb_board_role', {
   id: {
-    type: DataType.INTEGER,
+    type: DataType.BIGINT,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -50,27 +50,30 @@ BoardRoles.sync()
 
 const Board = sequelize.define('tb_board', {
   id: {
-    type: DataType.INTEGER,
+    type: DataType.BIGINT,
     primaryKey: true,
     autoIncrement: true,
   },
-  creator: DataType.STRING,
   name: DataType.STRING,
-  avatar_url: DataType.STRING,
+  description:DataType.STRING,
+  pictures_id: DataType.INTEGER,
+  creator: DataType.STRING,
 },
 {
   freezeTableName: false
 })
 
-Board.sync()
+Board.sync({
+  force: true
+})
 
 const BoardRights = sequelize.define('tb_board_right', {
   id: {
-    type: DataType.INTEGER,
+    type: DataType.BIGINT,
     primaryKey: true,
     autoIncrement: true,
   },
-  board_id: DataType.INTEGER,
+  board_id: DataType.BIGINT,
   collection_id: DataType.STRING,
   role_id: DataType.STRING,
 },
