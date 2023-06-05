@@ -83,6 +83,20 @@ const BoardRights = sequelize.define('tb_board_right', {
 
 BoardRights.sync()
 
+const Pictures = sequelize.define('tb_pictures', {
+  id: {
+    type: DataType.BIGINT,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  content: DataType.BLOB,
+},
+{
+  freezeTableName: false
+})
+
+Pictures.sync()
+
 const defaultBoardRoles: TBoardRole[] = ['owner', 'editor', 'reader']
 
 defaultBoardRoles.forEach( roleName => {
