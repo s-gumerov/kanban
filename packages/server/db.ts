@@ -50,7 +50,7 @@ const Board = sequelize.define('tb_board', {
   },
   title: DataType.STRING,
   description:DataType.STRING,
-  pictures_id: DataType.INTEGER,
+  picture_id: DataType.INTEGER,
   creator: DataType.STRING,
   task_list_arr: DataType.ARRAY(DataType.BIGINT)
 },
