@@ -23,7 +23,7 @@ const User = sequelize.define('tb_user', {
   phone: DataType.STRING,
   password: DataType.STRING,
   avatar_url: DataType.STRING,
-  board_rights_arr: DataType.ARRAY(DataType.INTEGER)
+  board_rights_arr: DataType.ARRAY(DataType.BIGINT)
 },
 {
   freezeTableName: false
@@ -65,6 +65,23 @@ const Board = sequelize.define('tb_board', {
 
 Board.sync()
 
+const TaskList = sequelize.define('tb_task_list', {
+  id: {
+    type: DataType.BIGINT,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  board_index: DataType.NUMBER, /* для размещения на доске слева направо */
+  title: DataType.STRING,
+  creator: DataType.STRING,
+  task_arr: DataType.ARRAY(DataType.BIGINT)
+},
+{
+  freezeTableName: false
+})
+
+TaskList.sync()
+
 const BoardRights = sequelize.define('tb_board_right', {
   id: {
     type: DataType.BIGINT,
@@ -72,7 +89,7 @@ const BoardRights = sequelize.define('tb_board_right', {
     autoIncrement: true,
   },
   board_id: DataType.BIGINT,
-  collection_id: DataType.STRING,
+  collection_id: DataType.BIGINT, /* входит в коллекцию user */
   role_id: DataType.STRING,
 },
 {
@@ -101,6 +118,7 @@ const Task = sequelize.define('tb_task', {
     primaryKey: true,
     autoIncrement: true,
   },
+  collection_id: DataType.BIGINT, /* входит в коллекцию taskList */
   title: DataType.STRING,
   description:DataType.STRING,
   deadline: DataType.DATE,
