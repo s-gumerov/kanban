@@ -54,7 +54,7 @@ const Board = sequelize.define('tb_board', {
     primaryKey: true,
     autoIncrement: true,
   },
-  name: DataType.STRING,
+  title: DataType.STRING,
   description:DataType.STRING,
   pictures_id: DataType.INTEGER,
   creator: DataType.STRING,
@@ -63,9 +63,7 @@ const Board = sequelize.define('tb_board', {
   freezeTableName: false
 })
 
-Board.sync({
-  force: true
-})
+Board.sync()
 
 const BoardRights = sequelize.define('tb_board_right', {
   id: {
@@ -83,7 +81,7 @@ const BoardRights = sequelize.define('tb_board_right', {
 
 BoardRights.sync()
 
-const Pictures = sequelize.define('tb_pictures', {
+const Pictures = sequelize.define('tb_picture', {
   id: {
     type: DataType.BIGINT,
     primaryKey: true,
@@ -96,6 +94,23 @@ const Pictures = sequelize.define('tb_pictures', {
 })
 
 Pictures.sync()
+
+const Task = sequelize.define('tb_task', {
+  id: {
+    type: DataType.BIGINT,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  title: DataType.STRING,
+  description:DataType.STRING,
+  deadline: DataType.DATE,
+  creator: DataType.STRING,
+},
+{
+  freezeTableName: false
+})
+
+Task.sync()
 
 const defaultBoardRoles: TBoardRole[] = ['owner', 'editor', 'reader']
 
