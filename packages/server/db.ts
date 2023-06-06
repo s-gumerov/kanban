@@ -29,10 +29,6 @@ const User = sequelize.define('tb_user', {
   freezeTableName: false
 })
 
-User.sync()
-
-
-type TBoardRole = 'owner' | 'editor' | 'reader'
 
 const BoardRoles = sequelize.define('tb_board_role', {
   id: {
@@ -46,8 +42,6 @@ const BoardRoles = sequelize.define('tb_board_role', {
   freezeTableName: false
 })
 
-BoardRoles.sync()
-
 const Board = sequelize.define('tb_board', {
   id: {
     type: DataType.BIGINT,
@@ -58,12 +52,11 @@ const Board = sequelize.define('tb_board', {
   description:DataType.STRING,
   pictures_id: DataType.INTEGER,
   creator: DataType.STRING,
+  task_list_arr: DataType.ARRAY(DataType.BIGINT)
 },
 {
   freezeTableName: false
 })
-
-Board.sync()
 
 const TaskList = sequelize.define('tb_task_list', {
   id: {
@@ -71,6 +64,7 @@ const TaskList = sequelize.define('tb_task_list', {
     primaryKey: true,
     autoIncrement: true,
   },
+  collection_id: DataType.BIGINT, /* входит в коллекцию Board */
   board_index: DataType.NUMBER, /* для размещения на доске слева направо */
   title: DataType.STRING,
   creator: DataType.STRING,
@@ -80,8 +74,6 @@ const TaskList = sequelize.define('tb_task_list', {
   freezeTableName: false
 })
 
-TaskList.sync()
-
 const BoardRights = sequelize.define('tb_board_right', {
   id: {
     type: DataType.BIGINT,
@@ -89,14 +81,12 @@ const BoardRights = sequelize.define('tb_board_right', {
     autoIncrement: true,
   },
   board_id: DataType.BIGINT,
-  collection_id: DataType.BIGINT, /* входит в коллекцию user */
+  collection_id: DataType.BIGINT, /* входит в коллекцию User */
   role_id: DataType.STRING,
 },
 {
   freezeTableName: false
 })
-
-BoardRights.sync()
 
 const Pictures = sequelize.define('tb_picture', {
   id: {
@@ -110,15 +100,13 @@ const Pictures = sequelize.define('tb_picture', {
   freezeTableName: false
 })
 
-Pictures.sync()
-
 const Task = sequelize.define('tb_task', {
   id: {
     type: DataType.BIGINT,
     primaryKey: true,
     autoIncrement: true,
   },
-  collection_id: DataType.BIGINT, /* входит в коллекцию taskList */
+  collection_id: DataType.BIGINT, /* входит в коллекцию TaskList */
   title: DataType.STRING,
   description:DataType.STRING,
   deadline: DataType.DATE,
@@ -128,7 +116,15 @@ const Task = sequelize.define('tb_task', {
   freezeTableName: false
 })
 
+User.sync()
+Board.sync()
+BoardRoles.sync()
+BoardRights.sync()
+TaskList.sync()
 Task.sync()
+Pictures.sync()
+
+type TBoardRole = 'owner' | 'editor' | 'reader'
 
 const defaultBoardRoles: TBoardRole[] = ['owner', 'editor', 'reader']
 
