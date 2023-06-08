@@ -29,18 +29,7 @@ const User = sequelize.define('tb_user', {
   freezeTableName: false
 })
 
-
-const BoardRoles = sequelize.define('tb_board_role', {
-  id: {
-    type: DataType.BIGINT,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  name: DataType.STRING,
-},
-{
-  freezeTableName: false
-})
+User.sync()
 
 const Board = sequelize.define('tb_board', {
   id: {
@@ -58,21 +47,22 @@ const Board = sequelize.define('tb_board', {
   freezeTableName: false
 })
 
-const TaskList = sequelize.define('tb_task_list', {
+Board.sync()
+
+const BoardRoles = sequelize.define('tb_board_role', {
   id: {
     type: DataType.BIGINT,
     primaryKey: true,
     autoIncrement: true,
   },
-  collection_id: DataType.BIGINT, /* входит в коллекцию Board */
-  board_index: DataType.NUMBER, /* для размещения на доске слева направо */
-  title: DataType.STRING,
-  creator: DataType.STRING,
-  task_arr: DataType.ARRAY(DataType.BIGINT)
+  name: DataType.STRING,
 },
 {
   freezeTableName: false
 })
+
+
+BoardRoles.sync()
 
 const BoardRights = sequelize.define('tb_board_right', {
   id: {
@@ -88,17 +78,25 @@ const BoardRights = sequelize.define('tb_board_right', {
   freezeTableName: false
 })
 
-const Pictures = sequelize.define('tb_picture', {
+BoardRights.sync()
+
+const TaskList = sequelize.define('tb_task_list', {
   id: {
     type: DataType.BIGINT,
     primaryKey: true,
     autoIncrement: true,
   },
-  content: DataType.BLOB,
+  collection_id: DataType.BIGINT, /* входит в коллекцию Board */
+  board_index: DataType.INTEGER, /* для размещения на доске слева направо */
+  title: DataType.STRING,
+  creator: DataType.STRING,
+  task_arr: DataType.ARRAY(DataType.BIGINT)
 },
 {
   freezeTableName: false
 })
+
+TaskList.sync()
 
 const Task = sequelize.define('tb_task', {
   id: {
@@ -116,12 +114,21 @@ const Task = sequelize.define('tb_task', {
   freezeTableName: false
 })
 
-User.sync()
-Board.sync()
-BoardRoles.sync()
-BoardRights.sync()
-TaskList.sync()
 Task.sync()
+
+const Pictures = sequelize.define('tb_picture', {
+  id: {
+    type: DataType.BIGINT,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  content: DataType.BLOB,
+},
+{
+  freezeTableName: false
+})
+
+
 Pictures.sync()
 
 type TBoardRole = 'owner' | 'editor' | 'reader'
