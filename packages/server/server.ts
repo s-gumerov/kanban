@@ -1,15 +1,13 @@
 import express from 'express'
 import * as path from 'path'
 import { CLIENT_DIR } from './const'
-import { sequelize } from './db'
-import { router } from './routes/api'
+import { router } from './api'
 import bodyParser from 'body-parser'
+import { dbConnect } from './db/init'
+
 const cors = require('cors')
 
-sequelize
-  .authenticate()
-  .then(() => console.log('Connected.'))
-  .catch(err => console.error('Connection error: ', err))
+dbConnect()
 
 const app = express()
 
