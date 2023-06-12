@@ -27,5 +27,6 @@
       "*": ["types/*"]
     },
     "outDir": "dist"
-  }
+  },
+  "include": ["shared"]
 }
