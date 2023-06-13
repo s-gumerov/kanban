@@ -1,12 +1,12 @@
 import { Router, Request, Response } from 'express'
-import { signup, signin } from '../models/user'
-import { User } from '../../db'
-import type { TBadRequest } from './type'
+import { User } from '../db/init'
+import type { TBadRequest } from '../../shared'
+import { RoutePaths } from '../../shared/index'
 
 
 export const userRouter = Router()
 
-userRouter.post(signup.route, async (req: Request, res: Response) => {
+userRouter.post(RoutePaths.SIGNUP, async (req: Request, res: Response) => {
   const { email, login, full_name, public_name, phone, password, avatar_url } = req.body
 
   const [, created] = await User.findOrCreate({
@@ -27,7 +27,7 @@ userRouter.post(signup.route, async (req: Request, res: Response) => {
   
   if(created) {
     const users = await User.findAll()
-    const result: signup.Response = users[users.length - 1].dataValues
+    const result = users[users.length - 1].dataValues
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
@@ -37,7 +37,7 @@ userRouter.post(signup.route, async (req: Request, res: Response) => {
   }
 })
 
-userRouter.post(signin.route, async (req: Request, res: Response) => {
+userRouter.post(RoutePaths.SIGNIN, async (req: Request, res: Response) => {
   const { login, password } = req.body
   
   const user = await User.findOne({
@@ -54,7 +54,7 @@ userRouter.post(signin.route, async (req: Request, res: Response) => {
   }
 
   if(user.dataValues.password === password) {
-    const result: signup.Response = user.dataValues
+    const result = user.dataValues
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
