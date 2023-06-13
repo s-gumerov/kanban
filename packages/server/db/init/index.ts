@@ -21,13 +21,29 @@ const sequelizeOptions: SequelizeOptions = {
 export const sequelize = new Sequelize(sequelizeOptions)
 
 // Инициализируем модели
-export const User = sequelize.define('tb_user', userModel, {freezeTableName: false});
-export const Board = sequelize.define('tb_board', boardModel, {freezeTableName: false});
-export const BoardRoles = sequelize.define('tb_board_role', boardRoleModel, {freezeTableName: false});
-export const BoardRights = sequelize.define('tb_board_right', boardRightsModel, {freezeTableName: false});
-export const TaskList = sequelize.define('tb_task_list', taskListModel, {freezeTableName: false});
-export const Task = sequelize.define('tb_task', taskModel, {freezeTableName: false});
-export const Pictures = sequelize.define('tb_picture', pictureModel, {freezeTableName: false});
+export const User = sequelize.define('tb_user', userModel, {
+  freezeTableName: false,
+})
+export const Board = sequelize.define('tb_board', boardModel, {
+  freezeTableName: false,
+})
+export const BoardRoles = sequelize.define('tb_board_role', boardRoleModel, {
+  freezeTableName: false,
+})
+export const BoardRights = sequelize.define(
+  'tb_board_right',
+  boardRightsModel,
+  { freezeTableName: false }
+)
+export const TaskList = sequelize.define('tb_task_list', taskListModel, {
+  freezeTableName: false,
+})
+export const Task = sequelize.define('tb_task', taskModel, {
+  freezeTableName: false,
+})
+export const Pictures = sequelize.define('tb_picture', pictureModel, {
+  freezeTableName: false,
+})
 
 /* сделать ручку и реализовать заполнение таблицы дефолтными ролями
 const defaultBoardRoles: TBoardRole[] = ['owner', 'editor', 'reader']
@@ -46,10 +62,10 @@ defaultBoardRoles.forEach( roleName => {
 
 export async function dbConnect() {
   try {
-      await sequelize.authenticate(); // Проверка аутентификации в БД
-      await sequelize.sync(); // Синхронизация базы данных
-      console.log('Connection has been established successfully.');
+    await sequelize.authenticate() // Проверка аутентификации в БД
+    await sequelize.sync() // Синхронизация базы данных
+    console.log('Connection has been established successfully.')
   } catch (error) {
-      console.error('Unable to connect to the database:', error);
+    console.error('Unable to connect to the database:', error)
   }
 }

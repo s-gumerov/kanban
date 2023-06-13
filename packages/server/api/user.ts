@@ -3,11 +3,11 @@ import { User } from '../db/init'
 import type { TBadRequest } from '../../shared'
 import { RoutePaths } from '../../shared/index'
 
-
 export const userRouter = Router()
 
 userRouter.post(RoutePaths.SIGNUP, async (req: Request, res: Response) => {
-  const { email, login, full_name, public_name, phone, password, avatar_url } = req.body
+  const { email, login, full_name, public_name, phone, password, avatar_url } =
+    req.body
 
   const [, created] = await User.findOrCreate({
     where: {
@@ -22,16 +22,16 @@ userRouter.post(RoutePaths.SIGNUP, async (req: Request, res: Response) => {
       phone: phone,
       password: password,
       avatar_url: avatar_url ?? '',
-    }
+    },
   })
-  
-  if(created) {
+
+  if (created) {
     const users = await User.findAll()
     const result = users[users.length - 1].dataValues
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
-      reason: "Логин уже используется"
+      reason: 'Логин уже используется',
     }
     return res.send(badRequest)
   }
@@ -39,27 +39,27 @@ userRouter.post(RoutePaths.SIGNUP, async (req: Request, res: Response) => {
 
 userRouter.post(RoutePaths.SIGNIN, async (req: Request, res: Response) => {
   const { login, password } = req.body
-  
+
   const user = await User.findOne({
     where: {
-      login: login
-    }
+      login: login,
+    },
   })
 
-  if(!user) {
+  if (!user) {
     const badRequest: TBadRequest = {
-      reason: "Пользователь не найден"
+      reason: 'Пользователь не найден',
     }
     return res.send(badRequest)
   }
 
-  if(user.dataValues.password === password) {
+  if (user.dataValues.password === password) {
     const result = user.dataValues
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
-      reason: "Не правильный пароль, попробуйте еще раз"
+      reason: 'Не правильный пароль, попробуйте еще раз',
     }
     return res.send(badRequest)
-}
+  }
 })

@@ -2,14 +2,14 @@ import { DataType, Model } from 'sequelize-typescript'
 import { ModelAttributes } from 'sequelize/types'
 
 export interface IUser {
-  id: number,
-  email: string,
-  login: string,
-  full_name: string,
-  public_name: string,
-  phone: string,
-  password: string,
-  avatar_url: string,
+  id: number
+  email: string
+  login: string
+  full_name: string
+  public_name: string
+  phone: string
+  password: string
+  avatar_url: string
   board_rights_arr: number[]
 }
 
@@ -26,7 +26,5 @@ export const userModel: ModelAttributes<Model, IUser> = {
   phone: DataType.STRING,
   password: DataType.STRING,
   avatar_url: DataType.STRING,
-  board_rights_arr: DataType.ARRAY(DataType.BIGINT)
+  board_rights_arr: DataType.ARRAY(DataType.BIGINT),
 }
-
-
