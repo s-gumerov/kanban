@@ -1,11 +1,11 @@
 import { axiosInstance } from "../axios"
-import { signup, signin } from "../../../../server/routes/models/user"
 import type { TSignInData, TSignupData } from "./types"
+import { RoutePaths } from "../../../../shared"
 
 export const signUp = async (data: TSignupData) => {
     
     try {
-        const result = await axiosInstance(signup.route, {
+        const result = await axiosInstance(RoutePaths.SIGNUP, {
             method: 'post',
             data
         })
@@ -20,7 +20,7 @@ export const signUp = async (data: TSignupData) => {
 export const signIn = async (data: TSignInData) => {
     
     try {
-        const result = await axiosInstance(signin.route, {
+        const result = await axiosInstance(RoutePaths.SIGNIN, {
             method: 'post',
             data
         })

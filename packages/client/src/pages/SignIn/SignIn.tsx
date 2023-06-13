@@ -4,10 +4,10 @@ import { AUTH_VALIDATION_SCHEMA, INITIAL_FORM_STATE } from './validation-schema'
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from './styles.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
-import { RoutePaths } from '../router/routes'
 import type { TSignInData } from '../../api/auth/types'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { signInByThunk } from '../../store/user/userSlice'
+import { RoutePaths } from "../../../../shared"
 
 export const SignIn = (): JSX.Element => {
   const navigate = useNavigate()
