@@ -1,6 +1,21 @@
 import type { TRoute } from './types'
 import { SignIn, Kanban, Main, NotFound, Signup } from '../index'
-import { RoutePaths } from "../../../../shared"
+
+export enum RoutePaths {
+  MAIN = '/',
+  SIGNUP = '/user/signup',
+  SIGNIN = '/user/signin',
+  KANBAN = '/kanban',
+  NOT_FOUND = '*',
+}
+
+export enum RouteNames {
+  MAIN = 'Главная',
+  SIGNUP = 'Регистрация',
+  AUTH = 'Авторизация',
+  KANBAN = 'Канбан',
+  NOT_FOUND = 'Страница не найдена',
+}
 
 export const publicRoutes: TRoute[] = [
   {

@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import type { TSignInData } from '../../api/auth/types'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { signInByThunk } from '../../store/user/userSlice'
-import { RoutePaths } from "../../../../shared"
+import { RoutePaths } from '../router/routes'
 
 export const SignIn = (): JSX.Element => {
   const navigate = useNavigate()

@@ -3,14 +3,14 @@ import type { TSignInData, TSignupData, TUserData } from "../../api/auth/types"
 import { signIn, signUp } from "../../api/auth"
 import type { TInitialState, TUserState } from "./types"
 import { isError } from "../../utils/isError"
-import { RoutePaths, type TBadRequest } from "../../../../shared"
+import { API, type TBadRequest } from "../../../../shared/API"
 
 
-export const signUpByThunk = createAsyncThunk<TUserData | TBadRequest, TSignupData>(RoutePaths.SIGNUP, async (data) => {
+export const signUpByThunk = createAsyncThunk<TUserData | TBadRequest, TSignupData>(API.USER.SIGNUP, async (data) => {
   return signUp(data)
 })
 
-export const signInByThunk = createAsyncThunk<TUserData | TBadRequest, TSignInData>(RoutePaths.SIGNIN, async (data) => {
+export const signInByThunk = createAsyncThunk<TUserData | TBadRequest, TSignInData>(API.USER.SIGNIN, async (data) => {
    return signIn(data)
 })
 

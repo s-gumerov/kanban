@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { userRouter } from './user'
-import { API_URL } from '../const'
+import { BASE_URL_API } from '../../shared/API'
 
 export const router = Router()
-router.use(API_URL, userRouter)
+router.use(BASE_URL_API, userRouter)

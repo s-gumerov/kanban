@@ -1,11 +1,10 @@
 import { Router, Request, Response } from 'express'
 import { User } from '../db/init'
-import type { TBadRequest } from '../../shared'
-import { RoutePaths } from '../../shared/index'
+import { API, type TBadRequest } from '../../shared/API'
 
 export const userRouter = Router()
 
-userRouter.post(RoutePaths.SIGNUP, async (req: Request, res: Response) => {
+userRouter.post(API.USER.SIGNUP, async (req: Request, res: Response) => {
   const { email, login, full_name, public_name, phone, password, avatar_url } =
     req.body
 
@@ -37,7 +36,7 @@ userRouter.post(RoutePaths.SIGNUP, async (req: Request, res: Response) => {
   }
 })
 
-userRouter.post(RoutePaths.SIGNIN, async (req: Request, res: Response) => {
+userRouter.post(API.USER.SIGNIN, async (req: Request, res: Response) => {
   const { login, password } = req.body
 
   const user = await User.findOne({
