@@ -1,19 +1,8 @@
 import { DataType, Model } from 'sequelize-typescript'
 import { ModelAttributes } from 'sequelize/types'
+import type { TUserData } from '../../../shared/API/types'
 
-export interface IUser {
-  id: number
-  email: string
-  login: string
-  full_name: string
-  public_name: string
-  phone: string
-  password: string
-  avatar_url: string
-  board_rights_arr: number[]
-}
-
-export const userModel: ModelAttributes<Model, IUser> = {
+export const userModel: ModelAttributes<Model, TUserData> = {
   id: {
     type: DataType.BIGINT,
     primaryKey: true,

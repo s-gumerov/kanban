@@ -2,7 +2,7 @@ import { isClient } from "../utils/isClient"
 import { getLocationOrigin } from "../utils/getLocationOrigin"
 
 export const HOST = isClient() ? getLocationOrigin () : ''
-export const BASE_URL_API = `${HOST}/api`
+export const BASE_URL_API = `${HOST}/api` /* для сервера по умолчанию всегда - "/api' */
 
 export namespace API {
   export enum USER {

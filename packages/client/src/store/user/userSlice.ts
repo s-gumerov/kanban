@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit"
-import type { TSignInData, TSignupData, TUserData } from "../../api/auth/types"
+import type { TSignInData, TSignupData, TUserData } from "../../../../shared/API/types"
 import { signIn, signUp } from "../../api/auth"
 import type { TInitialState, TUserState } from "./types"
 import { isError } from "../../utils/isError"

@@ -1,5 +1,5 @@
 import { axiosInstance } from "../axios"
-import type { TSignInData, TSignupData } from "./types"
+import type { TSignInData, TSignupData } from "../../../../shared/API/types"
 import { API } from "../../../../shared/API"
 
 export const signUp = async (data: TSignupData) => {

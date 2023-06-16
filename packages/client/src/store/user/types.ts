@@ -1,4 +1,4 @@
-import type { TUserData } from "../../api/auth/types"
+import type { TUserData } from "../../../../shared/API/types"
 
 export type TUserState = {
     user: TUserData | null

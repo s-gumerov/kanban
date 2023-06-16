@@ -6,7 +6,7 @@ import {
   PASSWORD_REGEXP,
   PHONE_REGEXP,
 } from '../../utils/validationRegExps'
-import type { TSignupData } from '../../api/auth/types'
+import type { TSignupData } from '../../../../shared/API/types'
 
 export const INITIAL_FORM_STATE: TSignupData = {
   email: '',

@@ -7,7 +7,7 @@ import {
 import { TextFieldAuth } from '../../components/TextFieldAuth'
 import styles from '../SignIn/styles.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
-import type { TSignupData } from '../../api/auth/types'
+import type { TSignupData } from '../../../../shared/API/types'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { signUpByThunk } from '../../store/user/userSlice'
 import { RoutePaths } from '../router/routes'

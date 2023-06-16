@@ -1,12 +1,23 @@
 import { Router, Request, Response } from 'express'
 import { User } from '../db/init'
 import { API, type TBadRequest } from '../../shared/API'
+import type { TSignInData, TSignupData, TUserData } from '../../shared/API/types'
 
 export const userRouter = Router()
 
+const checkUserDetails = (user: TUserData) => {
+  /* деструктурируем чтобы исключить - даты добавления и обновления записи в БД и пароль */
+  const { id, email, login, full_name, public_name, phone, avatar_url, board_rights_arr } = user
+  return { id, email, login, full_name, public_name, phone, avatar_url, board_rights_arr }
+}
+
 userRouter.post(API.USER.SIGNUP, async (req: Request, res: Response) => {
-  const { email, login, full_name, public_name, phone, password, avatar_url } =
+  const { email, login, full_name, public_name, phone, password, avatar_url }: TSignupData =
     req.body
+
+    /**
+     * Сделать проверку поляей запроса на соответствие модели пользователя
+     */
 
   const [, created] = await User.findOrCreate({
     where: {
@@ -26,8 +37,8 @@ userRouter.post(API.USER.SIGNUP, async (req: Request, res: Response) => {
 
   if (created) {
     const users = await User.findAll()
-    const result = users[users.length - 1].dataValues
-    return res.send(result)
+    const user: TUserData = users[users.length - 1].dataValues
+    return res.send(checkUserDetails(user))
   } else {
     const badRequest: TBadRequest = {
       reason: 'Логин уже используется',
@@ -37,7 +48,7 @@ userRouter.post(API.USER.SIGNUP, async (req: Request, res: Response) => {
 })
 
 userRouter.post(API.USER.SIGNIN, async (req: Request, res: Response) => {
-  const { login, password } = req.body
+  const { login, password }: TSignInData = req.body
 
   const user = await User.findOne({
     where: {
@@ -53,8 +64,7 @@ userRouter.post(API.USER.SIGNIN, async (req: Request, res: Response) => {
   }
 
   if (user.dataValues.password === password) {
-    const result = user.dataValues
-    return res.send(result)
+    return res.send(checkUserDetails(user.dataValues))
   } else {
     const badRequest: TBadRequest = {
       reason: 'Не правильный пароль, попробуйте еще раз',

@@ -8,10 +8,12 @@ export type TSignupData = {
     full_name: string
     public_name: string
     phone: string
+    avatar_url?: string
     password_again: string
   } & TSignInData
 
+  /* данные которые вернет сервер после регистрации или авторизации */
   export type TUserData = {
     id: number
-    avatar?: string
-  } & Omit<TSignupData, 'password' | 'password_again'>
+    board_rights_arr: number[]
+  } & Omit<TSignupData, 'password_again'> 
