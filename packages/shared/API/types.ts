@@ -17,3 +17,17 @@ export type TSignupData = {
     id: number
     board_rights_arr: number[]
   } & Omit<TSignupData, 'password_again'> 
+
+
+
+export type TDataToCreateBoard = {
+  title: string
+  description: string
+  picture_id?: number
+  creator_id: number
+}
+
+export type TBoardData = {
+  id: number
+  task_list_arr: number[]
+} & TDataToCreateBoard

@@ -1,36 +1,26 @@
 import { Router, Request, Response } from 'express'
 import { Board } from '../db/init'
 import { API, type TBadRequest } from '../../shared/API'
+import { TDataToCreateBoard } from '../../shared/API/types'
 
-export const userRouter = Router()
+export const boardRouter = Router()
 
-userRouter.post(API.BOARD.CREATE, async (req: Request, res: Response) => {
-  const { email, login, full_name, public_name, phone, password, avatar_url } =
-    req.body
+boardRouter.post(API.BOARD.CREATE, async (req: Request, res: Response) => {
+  const { creator_id, title, description } = req.body as TDataToCreateBoard
 
-  const [, created] = await Board.findOrCreate({
-    where: {
-      login: login,
-      email: email,
-    },
-    defaults: {
-      email: email,
-      login: login,
-      full_name: full_name,
-      public_name: public_name,
-      phone: phone,
-      password: password,
-      avatar_url: avatar_url ?? '',
-    },
+  const createdBoard = await Board.create({
+    title: title,
+    description: description,
+    creator_id: creator_id,
   })
 
-  if (created) {
-    const users = await Board.findAll()
-    const result = users[users.length - 1].dataValues
+  if (createdBoard) {
+    const boards = await Board.findAll()
+    const result = boards[boards.length - 1].dataValues
     return res.send(result)
   } else {
     const badRequest: TBadRequest = {
-      reason: 'Логин уже используется',
+      reason: 'Ошибка добавления доски, попробуйте еще раз',
     }
     return res.send(badRequest)
   }
