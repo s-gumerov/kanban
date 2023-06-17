@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express'
-import { User } from '../db/init'
-import { API, type TBadRequest } from '../../shared/API'
-import type { TSignInData, TSignupData, TUserData } from '../../shared/API/types'
+import { User } from '../../db/init'
+import { API, type TBadRequest } from '../../../shared/API'
+import type { TSignInData, TSignupData, TUserData } from '../../../shared/API/types'
 
-export const userRouter = Router()
+export const authRouter = Router()
 
 const checkUserDetails = (user: TUserData) => {
   /* деструктурируем чтобы исключить - даты добавления и обновления записи в БД и пароль */
@@ -11,7 +11,7 @@ const checkUserDetails = (user: TUserData) => {
   return { id, email, login, full_name, public_name, phone, avatar_url, board_rights_arr }
 }
 
-userRouter.post(API.USER.SIGNUP, async (req: Request, res: Response) => {
+authRouter.post(API.Auth.Signup, async (req: Request, res: Response) => {
   const { email, login, full_name, public_name, phone, password, avatar_url }: TSignupData =
     req.body
 
@@ -47,7 +47,7 @@ userRouter.post(API.USER.SIGNUP, async (req: Request, res: Response) => {
   }
 })
 
-userRouter.post(API.USER.SIGNIN, async (req: Request, res: Response) => {
+authRouter.post(API.Auth.Signin, async (req: Request, res: Response) => {
   const { login, password }: TSignInData = req.body
 
   const user = await User.findOne({

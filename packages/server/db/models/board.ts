@@ -1,6 +1,6 @@
 import { DataType, Model } from 'sequelize-typescript'
 import { ModelAttributes } from 'sequelize/types'
-import { TBoardData } from '../../../shared/API/types'
+import type { TBoardData } from '../../../shared/API/types'
 
 export const boardModel: ModelAttributes<Model, TBoardData> = {
   id: {

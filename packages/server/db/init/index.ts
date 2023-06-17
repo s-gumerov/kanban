@@ -30,11 +30,9 @@ export const Board = sequelize.define('tb_board', boardModel, {
 export const BoardRoles = sequelize.define('tb_board_role', boardRoleModel, {
   freezeTableName: false,
 })
-export const BoardRights = sequelize.define(
-  'tb_board_right',
-  boardRightsModel,
-  { freezeTableName: false }
-)
+export const BoardRights = sequelize.define('tb_board_right', boardRightsModel,{ 
+  freezeTableName: false 
+})
 export const TaskList = sequelize.define('tb_task_list', taskListModel, {
   freezeTableName: false,
 })

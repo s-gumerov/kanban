@@ -5,13 +5,14 @@ export const HOST = isClient() ? getLocationOrigin () : ''
 export const BASE_URL_API = `${HOST}/api` /* для сервера по умолчанию всегда - "/api' */
 
 export namespace API {
-  export enum USER {
-    SIGNUP = '/user/signup',
-    SIGNIN = '/user/signin',
+  export enum Auth {
+    Signup = '/auth/signup',
+    Signin = '/auth/signin',
   }
   
-  export enum BOARD {
-    CREATE = '/board/create',
+  export enum Boards {
+    Create = '/boards',
+    Get='/boards/get'
   }
 }
 

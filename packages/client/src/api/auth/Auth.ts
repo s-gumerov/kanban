@@ -5,7 +5,7 @@ import { API } from "../../../../shared/API"
 export const signUp = async (data: TSignupData) => {
     
     try {
-        const result = await axiosInstance(API.USER.SIGNUP, {
+        const result = await axiosInstance(API.Auth.Signup, {
             method: 'post',
             data
         })
@@ -20,7 +20,7 @@ export const signUp = async (data: TSignupData) => {
 export const signIn = async (data: TSignInData) => {
     
     try {
-        const result = await axiosInstance(API.USER.SIGNIN, {
+        const result = await axiosInstance(API.Auth.Signin, {
             method: 'post',
             data
         })

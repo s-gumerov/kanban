@@ -6,11 +6,11 @@ import { isError } from "../../utils/isError"
 import { API, type TBadRequest } from "../../../../shared/API"
 
 
-export const signUpByThunk = createAsyncThunk<TUserData | TBadRequest, TSignupData>(API.USER.SIGNUP, async (data) => {
+export const signUpByThunk = createAsyncThunk<TUserData | TBadRequest, TSignupData>(API.Auth.Signup, async (data) => {
   return signUp(data)
 })
 
-export const signInByThunk = createAsyncThunk<TUserData | TBadRequest, TSignInData>(API.USER.SIGNIN, async (data) => {
+export const signInByThunk = createAsyncThunk<TUserData | TBadRequest, TSignInData>(API.Auth.Signin, async (data) => {
    return signIn(data)
 })
 
