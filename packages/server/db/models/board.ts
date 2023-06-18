@@ -11,6 +11,6 @@ export const boardModel: ModelAttributes<Model, TBoardData> = {
   title: DataType.STRING,
   description: DataType.STRING,
   picture_id: DataType.INTEGER,
-  creator_id: DataType.NUMBER,
+  creator_id: DataType.INTEGER,
   task_list_arr: DataType.ARRAY(DataType.BIGINT),
 }

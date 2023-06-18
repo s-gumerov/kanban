@@ -1,16 +1,18 @@
 import { DataType, Model } from 'sequelize-typescript'
 import { ModelAttributes } from 'sequelize/types'
 
-export interface IBoardRoles {
+export type TRoleName = 'owner' | 'editor' | 'reader' 
+
+export type TBoardRoles = {
   id: number
-  name: 'owner' | 'editor' | 'reader'
+  role: TRoleName
 }
 
-export const boardRoleModel: ModelAttributes<Model, IBoardRoles> = {
+export const boardRoleModel: ModelAttributes<Model, TBoardRoles> = {
   id: {
     type: DataType.BIGINT,
     primaryKey: true,
     autoIncrement: true,
   },
-  name: DataType.STRING,
+  role: DataType.STRING,
 }

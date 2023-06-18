@@ -1,6 +1,6 @@
 import { userModel } from '../models/user'
 import { boardModel } from '../models/board'
-import { boardRoleModel } from '../models/boardRole'
+import { TRoleName, boardRoleModel } from '../models/boardRole'
 import { boardRightsModel } from '../models/boardRight'
 import { taskListModel } from '../models/taskList'
 import { taskModel } from '../models/task'
@@ -43,26 +43,26 @@ export const Pictures = sequelize.define('tb_picture', pictureModel, {
   freezeTableName: false,
 })
 
-/* сделать ручку и реализовать заполнение таблицы дефолтными ролями
-const defaultBoardRoles: TBoardRole[] = ['owner', 'editor', 'reader']
-
-defaultBoardRoles.forEach( roleName => {
-  return BoardRoles.findOrCreate({
-    where: {
-      name: roleName,
-    },
-    defaults: {
-      name: roleName,
-    }
-  })
-})
-*/
 
 export async function dbConnect() {
   try {
     await sequelize.authenticate() // Проверка аутентификации в БД
     await sequelize.sync() // Синхронизация базы данных
     console.log('Connection has been established successfully.')
+
+    /* сделать ручку и реализовать заполнение таблицы дефолтными ролями */
+    const defaultBoardRoles: TRoleName[]  = ['owner', 'editor', 'reader']
+
+    defaultBoardRoles.forEach( roleName => {
+      return BoardRoles.findOrCreate({
+        where: {
+          role: roleName,
+        },
+        defaults: {
+          role: roleName,
+        }
+      })
+    })
   } catch (error) {
     console.error('Unable to connect to the database:', error)
   }
