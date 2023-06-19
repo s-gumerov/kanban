@@ -28,6 +28,7 @@ export type TDataToCreateBoard = {
 }
 
 export type TDataToDeleteBoard = {
+  user_id: number
   board_id: number
 }
 
