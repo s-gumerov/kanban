@@ -27,6 +27,10 @@ export type TDataToCreateBoard = {
   creator_id: number
 }
 
+export type TDataToDeleteBoard = {
+  board_id: number
+}
+
 export type TBoardData = {
   id: number
   task_list_arr: number[]

@@ -11,8 +11,8 @@ export namespace API {
   }
   
   export enum Boards {
-    Create = '/boards',
-    Get='/boards/get'
+    CreateBoard = '/boards/create',
+    DeleteBoard = '/boards/delete'
   }
 }
 
